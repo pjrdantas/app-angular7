@@ -1,0 +1,91 @@
+<div class="container">
+  <br />
+  <mat-card>
+    <mat-toolbar>
+      <span class="fill-remaining-space"></span>
+      <mat-label>{{titulo}}</mat-label>
+      <span class="fill-remaining-space"></span>
+    </mat-toolbar>
+
+    <form [formGroup]="form" class="normal-form" (submit)="salvar()">
+
+      <mat-grid-list cols="2" rowHeight="200px">
+
+        <mat-grid-tile>
+          <div class="controles-container">
+            <mat-form-field>
+              <mat-label>Nome Completo*</mat-label>
+              <input matInput formControlName="nomeUsuario" [(ngModel)]="usuario.nomeUsuario"
+                placeholder="Digite o Nome Completo do Usuário">
+              <mat-error>o Nome do Usuário é obrigatório.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Login do Usuário*</mat-label>
+              <input matInput formControlName="loginUsuario" [(ngModel)]="usuario.loginUsuario"
+                placeholder="Digite o Login do Usuário">
+              <mat-error>O Login do Usuário é obrigatório.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Senha*</mat-label>
+              <input matInput formControlName="senhaUsuario" [(ngModel)]="usuario.senhaUsuario"
+                placeholder="Digite a Senha" [type]="hide ? 'password' : 'text'">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error>A senha do Usuário é obrigatório.</mat-error>
+            </mat-form-field>
+
+          </div>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <div class="controles-container">
+
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="emailUsuario" [(ngModel)]="usuario.emailUsuario"
+                placeholder="Digite o Email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required>
+              <mat-error>Email invalido</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Data da Contratação*</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="dtInicioUsuario"
+                [(ngModel)]="usuario.dtInicioUsuario" placeholder="dd/mm/aaaa">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error>A Data Invalida</mat-error>
+            </mat-form-field>
+
+            <br />
+            <br />
+            <div class="add-bottom-padding">
+              <mat-checkbox matInput formControlName="ativoUsuario" [(ngModel)]="usuario.ativoUsuario">Usuario ativo
+              </mat-checkbox>
+            </div>
+
+          </div>
+
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <mat-divider></mat-divider>
+      <br />
+
+      <div class="button-row">
+        &nbsp;&nbsp;&nbsp; &nbsp;
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+          <mat-icon>check</mat-icon>Salvar
+        </button>
+        <button mat-raised-button [routerLink]="['']" color="warn">
+          <mat-icon>refresh</mat-icon> Cancelar
+        </button>
+      </div>
+
+    </form>
+
+  </mat-card>
+</div>

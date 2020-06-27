@@ -1,0 +1,9 @@
+<div class="container">
+  <mat-toolbar class="barra-menu">
+    <button mat-button [matMenuTriggerFor]="menu">Usuário</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item [routerLink]="['/usuario-consulta']">Lista de Usuário</button>
+  <button mat-menu-item [routerLink]="['/usuario-cadastro']">+ Novo</button>
+</mat-menu>
+  </mat-toolbar>
+</div>
